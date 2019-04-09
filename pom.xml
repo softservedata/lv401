@@ -8,7 +8,7 @@
 	<artifactId>lv401</artifactId>
 	<version>0.1</version>
 
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>${project.artifactId}</name>
 	<url>http://maven.apache.org</url>
@@ -20,7 +20,8 @@
 		<jdk.compiler.version>1.8</jdk.compiler.version>
 		<maven.compiler.plugin.version>3.7.0</maven.compiler.plugin.version>
 		<maven.surefire.plugin.version>2.22.1</maven.surefire.plugin.version>
-		<org.testng.version>6.14.3</org.testng.version>
+		<org.testng.version>6.11</org.testng.version>
+		<maven.war.plugin.version>3.2.2</maven.war.plugin.version>
 		<testng.reports.directory>target/surefire-reports/test-output</testng.reports.directory>
 	</properties>
 
@@ -43,7 +44,7 @@
 					<encoding>${project.build.sourceEncoding}</encoding>
 				</configuration>
 			</plugin>
-			
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -74,6 +75,17 @@
 						<suiteXmlFile>testng2.xml</suiteXmlFile>
 					</suiteXmlFiles>
 					<reportsDirectory>${testng.reports.directory}</reportsDirectory>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>${maven.war.plugin.version}</version>
+				<configuration>
+					<!-- <warSourceDirectory>WebContent</warSourceDirectory> -->
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+					<packagingExcludes>WEB-INF/web.xml</packagingExcludes>
+					<warName>${project.artifactId}</warName>
 				</configuration>
 			</plugin>
 		</plugins>
